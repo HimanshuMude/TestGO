@@ -1,0 +1,17 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+   repository_dispatch:
+    types: [init-complete]
+
+jobs:
+
+ dependent-test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run test that depends on Workflow B's specific test
+        run: echo "Running dependent test in Workflow A"
